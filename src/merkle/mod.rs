@@ -1,8 +1,12 @@
-use crate as merkle_trees;
+pub mod errors;
+
+
+use crate::{self as merkle_trees, merkle::errors::Error};
 
 use merkle_trees::types::*;
 
 use sp_std::{marker::PhantomData, hash::Hasher};
+use sp_core::RuntimeDebug;
 
 /// Leaves is a representation of slice of leaf 
 pub type Leaves = Vec<Leaf>;  
@@ -34,6 +38,35 @@ impl<Hasher> Tree<Hasher> {
             _marker : <_>::default(),
         }
     }
+
+    /// builds tree from leaves
+    pub fn from_leaves(leaves: Leaves) -> Result<Self, Error> {
+        let mut this = Self::new();
+        this.uncommitted_leaves.append(&mut leaves)?;
+        this.commit()?;
+        Ok(tree)
+    }
+
+    /// commit commits the changes made by insert and append
+    /// and modifies the root.
+    pub fn commit(&mut self) -> Result<(), Error> {
+        // get difference committed and not committed tree layers
+        let diff = self.uncommited_diff()?;
+        
+        Ok(())
+    }
+
+  /// uncommittedDiff creates a diff from a changes that weren't committed to the main tree yet. Can be used
+/// to get uncommitted root or can be merged with the main tree
+    pub fn uncommited_diff(&self) -> Result<PartialTree<Hasher>, Error> {
+        if self.uncommitted_leaves.len() == 0 {
+            Ok(<_>::default())
+        }
+        else {
+            let (partial_tree_layers, uncommitted_tree_depth) = self.uncommited_partial_tree_layers();
+            
+        }
+    }
 }
 
 // PartialTree represents a part of the original tree that is enough to calculate the root.
@@ -41,6 +74,7 @@ impl<Hasher> Tree<Hasher> {
 // multiple trees into one.
 // It is a rare case when you need to use this struct on it's own. It's mostly used inside
 // Since it's a partial tree, hashes must be accompanied by their index in the original tree.
+#[derive(Default, RuntimeDebug)]
 pub struct PartialTree<Hasher> {
     pub layers : Layers,
     pub _marker : PhantomData<Hasher>,

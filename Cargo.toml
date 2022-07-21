@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 sp-std = "4.0.0"
+sp-core  = "6.0.0"
