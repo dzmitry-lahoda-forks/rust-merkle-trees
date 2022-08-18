@@ -1,6 +1,3 @@
-
-
-
 pub enum Error {
-
+    NotEnoughParentNodes,
 }

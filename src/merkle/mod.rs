@@ -3,13 +3,12 @@
 
 // use crate::{self as merkle_trees, merkle::errors::Error};
 
-// use merkle_trees::types::*;
+use crate::types::*;
+use crate::prelude::*;
 
-// use sp_std::{marker::PhantomData, hash::Hasher};
-// use sp_core::RuntimeDebug;
 
-// /// Leaves is a representation of slice of leaf 
-// pub type Leaves = Vec<Leaf>;  
+/// Leaves is a representation of slice of leaf 
+pub type Leaves<Hash> = Vec<Leaf<Hash>>;  
 
 // /// Layers is representation of slice of Leaves slice
 // pub type Layers  = Vec<Leaves>;
@@ -111,4 +110,4 @@
 //             _marker : <_>::default(),
 //         }
 //     }
-// }
+// }pub mod types;
