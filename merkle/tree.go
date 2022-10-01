@@ -74,7 +74,7 @@ func (t *Tree) currentLayersWithSiblings(leafIndices []uint64) Layers {
 	var layersNodesWithSiblings Layers
 	for _, layer := range t.layers() {
 		// get siblings of leaf indices and extract newly created indices
-		siblings := siblingIndecies(leafIndices)
+		siblings := siblingIndices(leafIndices)
 
 		// detect newly extracted siblings
 		newSiblingIndices := extractNewIndicesFromSiblings(siblings, leafIndices)
@@ -96,7 +96,7 @@ func (t *Tree) currentLayersWithSiblings(leafIndices []uint64) Layers {
 		layersNodesWithSiblings = append(layersNodesWithSiblings, existingLeavesInTree)
 
 		// go one level up in the leafInfices
-		leafIndices = parentIndecies(leafIndices)
+		leafIndices = parentIndices(leafIndices)
 	}
 
 	return layersNodesWithSiblings

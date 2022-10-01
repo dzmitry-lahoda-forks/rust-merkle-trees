@@ -297,7 +297,7 @@ func BenchmarkSiblingIndices(b *testing.B) {
 	mtree.append(leaves)
 	reservedIndices := mtree.getUncommittedReservedIndecies()
 	for n := 0; n < b.N; n++ {
-		siblingIndecies(reservedIndices)
+		siblingIndices(reservedIndices)
 	}
 }
 
@@ -307,7 +307,7 @@ func BenchmarkParentIndices(b *testing.B) {
 	mtree.append(leaves)
 	reservedIndices := mtree.getUncommittedReservedIndecies()
 	for n := 0; n < b.N; n++ {
-		parentIndecies(reservedIndices)
+		parentIndices(reservedIndices)
 	}
 }
 

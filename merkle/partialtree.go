@@ -50,7 +50,7 @@ func (pt *PartialTree) buildTree(partialLayers Layers, fullTreeDepth uint64) (La
 		currentLayer = make(Leaves, 0)
 
 		// get parent indices to set the merged node hash
-		parentIndices := parentIndecies(indices)
+		parentIndices := parentIndices(indices)
 
 		// loop through parents and set the merged hash
 		for i := 0; i < len(parentIndices); i++ {

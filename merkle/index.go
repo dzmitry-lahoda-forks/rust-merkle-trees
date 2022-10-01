@@ -4,8 +4,8 @@ import "math"
 
 const halfDivider = 2
 
-// siblingIndecies returns indecies of sibling elements
-func siblingIndecies(leafIndices []uint64) []uint64 {
+// siblingIndices returns indices of sibling elements
+func siblingIndices(leafIndices []uint64) []uint64 {
 
 	indicesCount := len(leafIndices)
 	siblings := make([]uint64, indicesCount)
@@ -18,8 +18,8 @@ func siblingIndecies(leafIndices []uint64) []uint64 {
 	return siblings
 }
 
-// parentIndecies returns indecies of parent elements
-func parentIndecies(leafIndices []uint64) []uint64 {
+// parentIndices returns indecies of parent elements
+func parentIndices(leafIndices []uint64) []uint64 {
 	indicesCount := len(leafIndices)
 	var parents []uint64
 	var lastParentSeend uint64 = math.MaxUint64

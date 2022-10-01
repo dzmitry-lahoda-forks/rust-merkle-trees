@@ -124,7 +124,7 @@ func (p Proof) proofLayers(leafIndices []uint64) Layers {
 		proofLayers[layerIndex] = proofLeaves
 
 		// go one level up in leaves
-		leafIndices = parentIndecies(leafIndices)
+		leafIndices = parentIndices(leafIndices)
 	}
 	return proofLayers
 }
@@ -133,7 +133,7 @@ func (p Proof) proofLayers(leafIndices []uint64) Layers {
 func popLastEvenIndexFromSiblings(leafIndices []uint64, unevenLeavesCount uint64) []uint64 {
 
 	// get siblings
-	siblingIndices := siblingIndecies(leafIndices)
+	siblingIndices := siblingIndices(leafIndices)
 
 	// remove from siblings if last node index is equal to eneven layer index
 	lastNodeIndex := leafIndices[len(leafIndices)-1]
