@@ -18,7 +18,7 @@ func siblingIndices(leafIndices []uint64) []uint64 {
 	return siblings
 }
 
-// parentIndices returns indecies of parent elements
+// parentIndices returns indices of parent elements
 func parentIndices(leafIndices []uint64) []uint64 {
 	indicesCount := len(leafIndices)
 	var parents []uint64
