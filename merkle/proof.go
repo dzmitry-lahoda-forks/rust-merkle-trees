@@ -116,7 +116,7 @@ func (p Proof) proofLayers(leafIndices []uint64) Layers {
 				Hash:  p.proofHashes[lastProofIndex],
 			}
 
-			// set the last checked index for next round of partent loop
+			// set the last checked index for next round of parent loop
 			lastProofIndex++
 		}
 
