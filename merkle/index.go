@@ -22,14 +22,14 @@ func siblingIndices(leafIndices []uint64) []uint64 {
 func parentIndices(leafIndices []uint64) []uint64 {
 	indicesCount := len(leafIndices)
 	var parents []uint64
-	var lastParentSeend uint64 = math.MaxUint64
+	var lastParentSeen uint64 = math.MaxUint64
 	for i := 0; i < indicesCount; i++ {
 		parentIndex := parentIndex(leafIndices[i])
-		if parentIndex == lastParentSeend {
+		if parentIndex == lastParentSeen {
 			continue
 		}
 		parents = append(parents, parentIndex)
-		lastParentSeend = parentIndex
+		lastParentSeen = parentIndex
 	}
 	return parents
 }
