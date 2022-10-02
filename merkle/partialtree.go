@@ -237,7 +237,6 @@ func reverseLayers(layers Layers) Layers {
 
 	for i := len(cls)/halfDivider - 1; i >= 0; i-- {
 		opp := len(cls) - 1 - i
-		// swap the items
 		cls[i], cls[opp] = cls[opp], cls[i]
 	}
 
