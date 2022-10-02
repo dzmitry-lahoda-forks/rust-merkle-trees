@@ -64,24 +64,24 @@ pub struct PartialTree<Hasher, Hash, N> {
     pub _marker : PhantomData<(Hasher, Hash, N)>,
 }
 
-// // Proof is used to parse, verify, calculate a root for Merkle proofs.
-// // Proof requires specifying hashing algorithm and hash size in order to work.
-// // The hashing algorithm is set through the Hasher interface, which is supplied as a generic
-// // parameter to the Proof.
-// pub struct  Proof<Hasher> {
-//     pub proof_hashes : Vec<Vec<u8>>,
-//     pub leaves: Leaves,
-//     pub total_leaves_count: usize,
-//     pub _marker : PhantomData<Hasher>,
-// }
+// Proof is used to parse, verify, calculate a root for Merkle proofs.
+// Proof requires specifying hashing algorithm and hash size in order to work.
+// The hashing algorithm is set through the Hasher interface, which is supplied as a generic
+// parameter to the Proof.
+pub struct  Proof<Hasher, Hash, N> {
+    pub proof_hashes : Vec<Vec<u8>>,
+    pub leaves: Leaves<Hash, N>,
+    pub total_leaves_count: usize,
+    pub _marker : PhantomData<Hasher>,
+}
 
-// impl<Hasher> Proof<Hasher> {
-//     pub fn new(leaves: Leaves, proof_hashes: Vec<Vec<u8>>, total_leaves_count: usize) -> Self {
-//         Self {
-//             proof_hashes,
-//             leaves,
-//             total_leaves_count,
-//             _marker : <_>::default(),
-//         }
-//     }
-// }pub mod types;
+impl<Hasher, Hash, N> Proof<Hasher, Hash, N> {
+    pub fn new(leaves: Leaves<Hash, N>, proof_hashes: Vec<Vec<u8>>, total_leaves_count: usize) -> Self {
+        Self {
+            proof_hashes,
+            leaves,
+            total_leaves_count,
+            _marker : <_>::default(),
+        }
+    }
+}
