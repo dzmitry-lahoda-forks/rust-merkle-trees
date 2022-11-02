@@ -1,7 +1,7 @@
 use crate::prelude::*;
 use std::default::Default;
 
-use super::types::*;
+use super::{types::*, errors::Error};
 
 // Tree is a Merkle Tree that is well suited for both basic and advanced usage.
 //
@@ -11,19 +11,19 @@ use super::types::*;
 // Advanced features include being able to make transactional changes to a tree with being able to
 // roll back to any previously committed state of the tree. This scenario is similar to Git and
 // can be found in databases and file systems.
-#[derive(Clone, RuntimeDebug)]
+#[derive(Clone, RuntimeDebug, Default)]
 pub struct Tree<Hasher, Hash, N> {
     pub current_working_tree: PartialTree<Hasher, Hash, N>,
     pub uncommitted_leaves: Leaves<Hash, N>,
     pub _marker: PhantomData<(Hasher)>,
 }
-impl<Hasher, Hash: Default, N: Default> Tree<Hasher, Hash, N> {
+impl<Hasher: Default, Hash: Default, N: Default> Tree<Hasher, Hash, N> {
     /// builds tree from leaves
-    pub fn from_leaves(leaves: Leaves<Hash, N>) -> Result<Self, Error> {
+    pub fn from_leaves(leaves: &mut Leaves<Hash, N>) -> Result<Self, Error> {
         let mut this = Self::default();
-        this.uncommitted_leaves.append(&mut leaves)?;
+        this.uncommitted_leaves.append(leaves);
         // this.commit()?;
-        Ok(tree)
+        Ok(this)
     }
 
     // /// commit commits the changes made by insert and append

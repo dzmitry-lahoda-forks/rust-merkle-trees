@@ -12,7 +12,7 @@ pub type Layers<Hash, N>  = Vec<Leaves<Hash, N>>;
 // multiple trees into one.
 // It is a rare case when you need to use this struct on it's own. It's mostly used inside
 // Since it's a partial tree, hashes must be accompanied by their index in the original tree.
-#[derive(Default, RuntimeDebug)]
+#[derive(Default, RuntimeDebug, Clone)]
 pub struct PartialTree<Hasher, Hash, N> {
     pub layers : Layers<Hash, N>,
     pub _marker : PhantomData<(Hasher, Hash, N)>,
